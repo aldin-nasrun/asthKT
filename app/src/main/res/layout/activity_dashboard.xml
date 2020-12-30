@@ -7,15 +7,24 @@
     tools:context=".views.DashboardActivity"
     android:background="@color/cream">
 
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        style="@style/text_main_black"
-        android:background="@drawable/btn_normal_selector"
-        android:text="LOGOUT"
-        app:layout_constraintEnd_toEndOf="parent"
+    <FrameLayout
+        android:id="@+id/mainframe"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@+id/navbar"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:flow_horizontalGap="50dp"
+        app:labelVisibilityMode="selected"
+        app:menu="@menu/navigation"
+        android:background="@color/dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
