@@ -85,12 +85,15 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
             Toast.makeText(context, " katakan sesuatu ", Toast.LENGTH_SHORT).show()
         }
         val sdf = SimpleDateFormat("dd/MM/yy - hh.mm aa")
+        val realTime = SimpleDateFormat("dd MM yyy hh mm ss")
         val currentDate = sdf.format(Date())
+        val realDate = realTime.format(Date())
         var twit = TwitData(
             auth.currentUser?.displayName.toString(),
             et_twit.getText().toString(),
             moodSelected,
-            currentDate
+            currentDate,
+            realDate
         )
         sendTwit(twit)
     }

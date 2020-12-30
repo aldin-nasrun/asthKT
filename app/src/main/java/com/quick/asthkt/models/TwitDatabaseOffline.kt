@@ -8,11 +8,12 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class TwitDatabaseOffline(var context : Context?) : SQLiteOpenHelper(
     context,
-    "db_twitOffline",
+    "db_twit",
     null,
     1
 ) {
     private lateinit var mQuery : String
+
     override fun onCreate(db: SQLiteDatabase?) {
         mQuery = "CREATE TABLE IF NOT EXISTS tb_twit(" +
                 "_id INTEGER PRIMARY KEY," +
@@ -20,9 +21,25 @@ class TwitDatabaseOffline(var context : Context?) : SQLiteOpenHelper(
                 "username TEXT," +
                 "twit TEXT," +
                 "mood TEXT," +
-                "time TEXT"+
+                "date TEXT,"+
+                "real_date TEXT"+
                 ")"
         db?.execSQL(mQuery)
+//        makeTable()
+    }
+
+    fun makeTable(){
+        val db = this.writableDatabase
+        mQuery = "CREATE TABLE IF NOT EXISTS tb_twit(" +
+                "_id INTEGER PRIMARY KEY," +
+                "documentID TEXT," +
+                "username TEXT," +
+                "twit TEXT," +
+                "mood TEXT," +
+                "date TEXT,"+
+                "real_date TEXT"+
+                ")"
+        db.execSQL(mQuery)
     }
     fun insertData(values: ContentValues) {
         val db = this.writableDatabase
@@ -31,7 +48,7 @@ class TwitDatabaseOffline(var context : Context?) : SQLiteOpenHelper(
 
     fun select(): Cursor? {
         val db = this.writableDatabase
-        mQuery = "select * from tb_twit"
+        mQuery = "select * from tb_twit order by real_date desc"
         return db.rawQuery(mQuery, null)
     }
 

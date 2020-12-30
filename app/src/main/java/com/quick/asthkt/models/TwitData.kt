@@ -4,6 +4,7 @@ data class TwitData(
 var username : String? = "",
 var twit : String? = "",
 var mood : String? = "",
-var date : String? = ""
+var date : String? = "",
+var realdate : String? = ""
 
 )
