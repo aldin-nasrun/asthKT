@@ -30,15 +30,15 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
     lateinit var usermailText : TextView
     lateinit var sp_mood : Spinner
     lateinit var btn_send : Button
-    lateinit var et_twit : EditText
+    private lateinit var et_twit : EditText
     var db = FirebaseFirestore.getInstance()
 //    private val personCollectionRef = Firebase.firestore.collection("twit")
     private val asthCollectionRef = Firebase.firestore
-    var moodSelected : String? = null
+    private var moodSelected : String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val v : View = inflater.inflate(R.layout.fragment_profile, container, false)
         usernameText = v.findViewById(R.id.tv_username)
@@ -89,7 +89,7 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val currentDate = sdf.format(Date())
             val realDate = realTime.format(Date())
 
-            var twit = TwitData(
+            val twit = TwitData(
                 auth.currentUser?.displayName.toString(),
                 et_twit.getText().toString(),
                 moodSelected,

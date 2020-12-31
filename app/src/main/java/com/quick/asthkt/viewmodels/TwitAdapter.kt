@@ -23,7 +23,6 @@ class TwitAdapter(
     private val cursor: Cursor
     private var parentClass = discoveryFragment
     private var context = ctc
-    var helperTwit = TwitDatabaseOffline(context)
 
     class TwitHolder(v: View) : RecyclerView.ViewHolder(v) {
         val nUsername: TextView = v.findViewById(R.id.tv_twitUsername)
