@@ -83,19 +83,23 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
     fun getTwit(){
         if (et_twit.getText().toString().equals("")){
             Toast.makeText(context, " katakan sesuatu ", Toast.LENGTH_SHORT).show()
+        }else {
+
+
+            val sdf = SimpleDateFormat("dd/MM/yy - hh.mm aa")
+            val realTime = SimpleDateFormat("yyyyMMddhhmmss")
+            val currentDate = sdf.format(Date())
+            val realDate = realTime.format(Date())
+
+            var twit = TwitData(
+                auth.currentUser?.displayName.toString(),
+                et_twit.getText().toString(),
+                moodSelected,
+                currentDate,
+                realDate
+            )
+            sendTwit(twit)
         }
-        val sdf = SimpleDateFormat("dd/MM/yy - hh.mm aa")
-        val realTime = SimpleDateFormat("dd MM yyy hh mm ss")
-        val currentDate = sdf.format(Date())
-        val realDate = realTime.format(Date())
-        var twit = TwitData(
-            auth.currentUser?.displayName.toString(),
-            et_twit.getText().toString(),
-            moodSelected,
-            currentDate,
-            realDate
-        )
-        sendTwit(twit)
     }
 
     private fun sendTwit(twit: TwitData) = CoroutineScope(Dispatchers.IO).launch{

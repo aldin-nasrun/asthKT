@@ -22,6 +22,7 @@
         android:layout_height="80dp"
         app:flow_horizontalGap="50dp"
         app:labelVisibilityMode="selected"
+        android:labelFor="@id/navbar"
         app:menu="@menu/navigation"
         android:background="@color/dark"
         app:layout_constraintBottom_toBottomOf="parent"

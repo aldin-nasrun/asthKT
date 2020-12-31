@@ -24,6 +24,7 @@ class DashboardActivity : AppCompatActivity() {
         val fragment = DiscoveryFragment()
         addFragment(fragment)
     }
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when(item.itemId){
             R.id.discovery -> {
@@ -46,7 +47,6 @@ class DashboardActivity : AppCompatActivity() {
 
     }
 
-
     private fun addFragment(fragment : Fragment){
         supportFragmentManager
             .beginTransaction()
@@ -54,8 +54,4 @@ class DashboardActivity : AppCompatActivity() {
             .commit()
     }
 
-//    fun logoutUser(){
-//        auth.signOut()
-//        startActivity(Intent(this@DashboardActivity, LoginActivity::class.java))
-//    }
 }

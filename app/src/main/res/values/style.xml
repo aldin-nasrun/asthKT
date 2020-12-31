@@ -13,4 +13,9 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/dark</item>
     </style>
+
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/btn_border_selector</item>
+        <item name="android:buttonBarPositiveButtonStyle">@drawable/btn_border_selector</item>
+    </style>
 </resources>

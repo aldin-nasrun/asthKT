@@ -34,17 +34,8 @@ class SettingFragment : Fragment() {
     }
     private fun logoutUser(){
         auth.signOut().also {
-        System.exit(0)
+            startActivity(Intent(activity, LoginActivity::class.java))
+            activity?.finish()
         }
     }
-//    fun triggerRebirth(context: Context, nextIntent: Intent?) {
-//        val intent = Intent(context, LoginActivity::class.java)
-//        intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
-//        intent.putExtra(KEY_RESTART_INTENT, nextIntent)
-//        context.startActivity(intent)
-//        if (context is Activity) {
-//            (context as Activity).finish()
-//        }
-//        Runtime.getRuntime().exit(0)
-//    }
 }

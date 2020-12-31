@@ -21,7 +21,7 @@ import kotlinx.coroutines.withContext
 const val REQUEST_CODE_SIGN_IN = 0
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var auth : FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     private val TAG = "LoginActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +37,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login.setOnClickListener {
-//            prepareSign()
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.web_client_id))
                 .requestEmail()
@@ -45,11 +44,7 @@ class LoginActivity : AppCompatActivity() {
             val signClient = GoogleSignIn.getClient(this, gso)
             signClient.signInIntent.also {
                 startActivityForResult(it, REQUEST_CODE_SIGN_IN)
-        }
-    }
-
-    fun prepareSign() {
-
+            }
         }
     }
 

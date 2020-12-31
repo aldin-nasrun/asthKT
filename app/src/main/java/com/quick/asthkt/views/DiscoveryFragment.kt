@@ -1,6 +1,9 @@
 package com.quick.asthkt.views
 
+import android.app.AlertDialog
 import android.content.ContentValues
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -65,8 +68,32 @@ class DiscoveryFragment : Fragment() {
         }
     }
 
+    fun popUpEdit(docID : String , uname : String, twits : String, ctx : Context){
+        AlertDialog.Builder(ctx,  R.style.CustomAlertDialog)
+            .setTitle("DELETE TWITS?")
+            .setMessage("are you sure ?")
+            .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+                deleteTwits(docID)
+            })
+            .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->
+                dialog.cancel()
+            }).show()
+    }
+
+    private fun deleteTwits(docID: String) = CoroutineScope(Dispatchers.IO).launch {
+        db.collection("twit").document(docID)
+            .delete()
+            .addOnCompleteListener {
+
+            }.await()
+        withContext(Dispatchers.IO){
+            initView()
+        }
+    }
+
+
     private fun initView() {
-        mAdapter = TwitAdapter(helperTwit.select())
+        mAdapter = TwitAdapter(helperTwit.select(), this, context!!)
         rv_list.apply {
             adapter = mAdapter
             layoutManager = LinearLayoutManager(context)
