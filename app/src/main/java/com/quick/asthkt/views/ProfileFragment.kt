@@ -52,8 +52,6 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         auth = FirebaseAuth.getInstance()
-        var moods = arrayOf("Senang", "Sedih", "Bingung", "Kasmaran", "Lelah", "Sakit")
-        val NEW_SPINNER_ID = 1
 
         usernameText.text = auth.currentUser?.displayName.toString()
         usermailText.text = auth.currentUser?.email.toString()
@@ -61,7 +59,7 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
         ArrayAdapter.createFromResource(context!!, R.array.moods, R.layout.layout_spinner).also {
             arrayAdapter ->
             arrayAdapter.setDropDownViewResource(R.layout.layout_spinner)
-            sp_mood.adapter = arrayAdapter;
+            sp_mood.adapter = arrayAdapter
             sp_mood.onItemSelectedListener = this
         }
 

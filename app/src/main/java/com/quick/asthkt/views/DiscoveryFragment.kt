@@ -85,10 +85,8 @@ class DiscoveryFragment : Fragment() {
             .delete()
             .addOnCompleteListener {
 
-            }.await()
-        withContext(Dispatchers.IO){
-            initView()
-        }
+            }
+
     }
 
 
