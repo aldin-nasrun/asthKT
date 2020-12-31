@@ -15,6 +15,7 @@ class TwitDatabaseOffline(var context : Context?) : SQLiteOpenHelper(
     private lateinit var mQuery : String
 
     override fun onCreate(db: SQLiteDatabase?) {
+
         mQuery = "CREATE TABLE IF NOT EXISTS tb_twit(" +
                 "_id INTEGER PRIMARY KEY," +
                 "documentID TEXT," +
@@ -25,22 +26,9 @@ class TwitDatabaseOffline(var context : Context?) : SQLiteOpenHelper(
                 "real_date TEXT"+
                 ")"
         db?.execSQL(mQuery)
-//        makeTable()
+
     }
 
-    fun makeTable(){
-        val db = this.writableDatabase
-        mQuery = "CREATE TABLE IF NOT EXISTS tb_twit(" +
-                "_id INTEGER PRIMARY KEY," +
-                "documentID TEXT," +
-                "username TEXT," +
-                "twit TEXT," +
-                "mood TEXT," +
-                "date TEXT,"+
-                "real_date TEXT"+
-                ")"
-        db.execSQL(mQuery)
-    }
     fun insertData(values: ContentValues) {
         val db = this.writableDatabase
         db.insert("tb_twit", null, values)

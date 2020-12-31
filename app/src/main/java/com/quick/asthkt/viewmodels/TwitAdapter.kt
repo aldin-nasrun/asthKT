@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.quick.asthkt.R
-import com.quick.asthkt.models.TwitDatabaseOffline
 import com.quick.asthkt.views.DiscoveryFragment
 
 class TwitAdapter(
@@ -20,7 +19,7 @@ class TwitAdapter(
     ctc : Context
 ) : RecyclerView.Adapter<TwitAdapter.TwitHolder>() {
     private lateinit var auth : FirebaseAuth
-    private val cursor: Cursor
+    private val cursor: Cursor = c!!
     private var parentClass = discoveryFragment
     private var context = ctc
 
@@ -69,10 +68,5 @@ class TwitAdapter(
 
     override fun getItemCount(): Int {
         return cursor.count
-    }
-
-
-    init {
-        cursor = c!!
     }
 }
