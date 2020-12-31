@@ -28,9 +28,9 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private val TAG = "ProfileFragment"
     lateinit var usernameText : TextView
     lateinit var usermailText : TextView
-    lateinit var sp_mood : Spinner
-    lateinit var btn_send : Button
-    private lateinit var et_twit : EditText
+    lateinit var spMood : Spinner
+    lateinit var btnSend : Button
+    private lateinit var etTwit : EditText
     var db = FirebaseFirestore.getInstance()
 //    private val personCollectionRef = Firebase.firestore.collection("twit")
     private val asthCollectionRef = Firebase.firestore
@@ -43,9 +43,9 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val v : View = inflater.inflate(R.layout.fragment_profile, container, false)
         usernameText = v.findViewById(R.id.tv_username)
         usermailText = v.findViewById(R.id.tv_userEmail)
-        sp_mood = v.findViewById(R.id.sp_mood)
-        btn_send = v.findViewById(R.id.btn_send)
-        et_twit = v.findViewById(R.id.et_twit)
+        spMood = v.findViewById(R.id.sp_mood)
+        btnSend = v.findViewById(R.id.btn_send)
+        etTwit = v.findViewById(R.id.et_twit)
         return v
     }
 
@@ -59,11 +59,11 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
         ArrayAdapter.createFromResource(context!!, R.array.moods, R.layout.layout_spinner).also {
             arrayAdapter ->
             arrayAdapter.setDropDownViewResource(R.layout.layout_spinner)
-            sp_mood.adapter = arrayAdapter
-            sp_mood.onItemSelectedListener = this
+            spMood.adapter = arrayAdapter
+            spMood.onItemSelectedListener = this
         }
 
-        btn_send.setOnClickListener {
+        btnSend.setOnClickListener {
             Toast.makeText(context, moodSelected, Toast.LENGTH_SHORT).show()
             getTwit()
         }
@@ -79,7 +79,7 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     fun getTwit(){
-        if (et_twit.getText().toString().equals("")){
+        if (etTwit.getText().toString().equals("")){
             Toast.makeText(context, " katakan sesuatu ", Toast.LENGTH_SHORT).show()
         }else {
 
@@ -91,7 +91,7 @@ class ProfileFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             val twit = TwitData(
                 auth.currentUser?.displayName.toString(),
-                et_twit.getText().toString(),
+                etTwit.getText().toString(),
                 moodSelected,
                 currentDate,
                 realDate
